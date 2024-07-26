@@ -56,3 +56,27 @@ app.get('/notes/:id', async (req, res) => {
 app.listen(PORT , () => {
     console.log('Were listening to port 3000')
 })
+//Update
+app.put('/notes/:id', async (req, res) => {
+    try {
+        // 1 .What were targetting 2. what were replacing 3.What it is replaced by
+        const updatedNote = await Note.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+        res.json(updatedNote)
+    } catch (error) {
+        res.status(400).json({ msg: error.message})
+    }
+})
+
+
+//Delete
+app.delete('/notes/:id', async (req, res) =>{
+    try {
+        await Note.findOneAndDelete({ _id: req.params.id })
+        .then((note) =>{
+            res.sendStatus(204)
+        })
+
+    } catch (error) {
+        res.status(400).json({ msg: error.message })
+    }
+})
