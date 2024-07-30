@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= note.text %></title>
+</head>
+<body>
+    <h1><%= note.text %></h1>
+    <% if(note.isRead){ %>   
+    <p>you have read this note!</p>
+    <% } else { %>
+    <p>You have not read this note yet.</p>
+    <% } %>
+    <form action="/notes/<%= note._id %>"></form>
+</body>
+</html>
